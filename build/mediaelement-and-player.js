@@ -2876,6 +2876,8 @@ if (typeof jQuery != 'undefined') {
 
 				// fit the rail into the remaining space
 				railWidth = t.controls.width() - usedWidth - (rail.outerWidth(true) - rail.width());
+
+                railWidth -= 7;	//@FeatureFM@
 			}
 
 			// resize the rail,
@@ -3301,7 +3303,7 @@ if (typeof jQuery != 'undefined') {
 				op = t.options,
 				play = 
 				$('<div class="mejs-button mejs-playpause-button mejs-play" >' +
-					'<button type="button" aria-controls="' + t.id + '" title="' + op.playText + '" aria-label="' + op.playText + '"></button>' +
+					'<button type="button" aria-controls="' + t.id + '" title="' + op.playText + '" aria-label="' + op.playText + '">' /*@FeatureFM@ Added:*/ + '<i class="play icon"></i>' + /*@FeatureFM@ Add Finished*/ '</button>' +
 				'</div>')
 				.appendTo(controls)
 				.click(function(e) {
@@ -3325,12 +3327,14 @@ if (typeof jQuery != 'undefined') {
 						'title': op.pauseText,
 						'aria-label': op.pauseText
 					});
+                    play_btn.html('<i class="pause icon"></i>');  //@FeatureFM@
 				} else {
 					play.removeClass('mejs-pause').addClass('mejs-play');
 					play_btn.attr({
 						'title': op.playText,
 						'aria-label': op.playText
 					});
+                    play_btn.html('<i class="play icon"></i>');  //@FeatureFM@
 				}
 			};
 			togglePlayPause('pse');
@@ -3764,7 +3768,7 @@ if (typeof jQuery != 'undefined') {
         allyVolumeControlText: mejs.i18n.t('Use Up/Down Arrow keys to increase or decrease volume.'),
 		hideVolumeOnTouchDevices: true,
 		
-		audioVolume: 'horizontal',
+		audioVolume: 'vertical', /*@FeatureFM@: 'horizontal',*/
 		videoVolume: 'vertical'
 	});
 
@@ -3799,7 +3803,7 @@ if (typeof jQuery != 'undefined') {
 				$('<div class="mejs-button mejs-volume-button mejs-mute">'+
 					'<button type="button" aria-controls="' + t.id + 
 						'" title="' + t.options.muteText + 
-						'" aria-label="' + t.options.muteText + 
+						'" aria-label="' + t.options.muteText +
 					'"></button>'+
 					'<a href="javascript:void(0);" class="mejs-volume-slider">'+ // outer background
 						'<span class="mejs-offscreen">' + t.options.allyVolumeControlText + '</span>' +                  
@@ -3831,9 +3835,11 @@ if (typeof jQuery != 'undefined') {
 				if (volume === 0) {
 					mute.removeClass('mejs-mute').addClass('mejs-unmute');
 					mute.children('button').attr('title', mejs.i18n.t('Unmute')).attr('aria-label', mejs.i18n.t('Unmute'));
+                    mute.children('button').html('<i class="volume up icon">');  //@FeatureFM@
 				} else {
 					mute.removeClass('mejs-unmute').addClass('mejs-mute');
 					mute.children('button').attr('title', mejs.i18n.t('Mute')).attr('aria-label', mejs.i18n.t('Mute'));
+                    mute.children('button').html('<i class="volume off icon">');  //@FeatureFM@
 				}
 
                 // top/left of full size volume slider background

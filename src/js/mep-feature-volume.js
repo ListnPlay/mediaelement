@@ -4,8 +4,8 @@
 		muteText: mejs.i18n.t('Mute Toggle'),
         allyVolumeControlText: mejs.i18n.t('Use Up/Down Arrow keys to increase or decrease volume.'),
 		hideVolumeOnTouchDevices: true,
-		
-		audioVolume: 'horizontal',
+
+        audioVolume: 'vertical', /*@FeatureFM@: 'horizontal',*/
 		videoVolume: 'vertical'
 	});
 
@@ -72,9 +72,11 @@
 				if (volume === 0) {
 					mute.removeClass('mejs-mute').addClass('mejs-unmute');
 					mute.children('button').attr('title', mejs.i18n.t('Unmute')).attr('aria-label', mejs.i18n.t('Unmute'));
+                    mute.children('button').html('<i class="volume up icon">');  //@FeatureFM@
 				} else {
 					mute.removeClass('mejs-unmute').addClass('mejs-mute');
 					mute.children('button').attr('title', mejs.i18n.t('Mute')).attr('aria-label', mejs.i18n.t('Mute'));
+                    mute.children('button').html('<i class="volume off icon">');  //@FeatureFM@
 				}
 
                 // top/left of full size volume slider background

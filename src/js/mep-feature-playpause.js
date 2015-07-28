@@ -13,7 +13,7 @@
 				op = t.options,
 				play = 
 				$('<div class="mejs-button mejs-playpause-button mejs-play" >' +
-					'<button type="button" aria-controls="' + t.id + '" title="' + op.playText + '" aria-label="' + op.playText + '"></button>' +
+					'<button type="button" aria-controls="' + t.id + '" title="' + op.playText + '" aria-label="' + op.playText + '">' /*@FeatureFM@ Added:*/ + '<i class="play icon"></i>' + /*@FeatureFM@ Add Finished*/ '</button>' +
 				'</div>')
 				.appendTo(controls)
 				.click(function(e) {
@@ -37,12 +37,14 @@
 						'title': op.pauseText,
 						'aria-label': op.pauseText
 					});
+                    play_btn.html('<i class="pause icon"></i>');  //@FeatureFM@
 				} else {
 					play.removeClass('mejs-pause').addClass('mejs-play');
 					play_btn.attr({
 						'title': op.playText,
 						'aria-label': op.playText
 					});
+                    play_btn.html('<i class="play icon"></i>');  //@FeatureFM@
 				}
 			};
 			togglePlayPause('pse');
